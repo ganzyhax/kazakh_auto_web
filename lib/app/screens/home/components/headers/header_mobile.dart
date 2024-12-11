@@ -21,13 +21,13 @@ class HomeHeaderMobileCard extends StatelessWidget {
           Row(
             children: [
               Image.asset(
-                'assets/images/logo_white.jpg', // Replace with your logo
+                'assets/images/logo_bg.jpg', // Replace with your logo
                 width: 40,
                 height: 40,
               ),
               const SizedBox(width: 8),
               Text(
-                "Kazakh Auto",
+                "Kazakh Auto Group",
                 style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
               ),
             ],
@@ -59,15 +59,29 @@ class _CustomMenuButtonState extends State<_CustomMenuButton> {
     return Stack(
       clipBehavior: Clip.none,
       children: [
-        GestureDetector(
-          onTap: _toggleDropdown,
-          child: const Icon(Icons.menu, color: Colors.black),
+        Row(
+          children: [
+            _buildMenuItem(
+              icon: Icons.language,
+              label: "RU",
+              iconColor: Colors.black,
+              onTap: () {},
+            ),
+            SizedBox(
+              width: 15,
+            ),
+            GestureDetector(
+              onTap: _toggleDropdown,
+              child: const Icon(Icons.menu, color: Colors.black),
+            ),
+          ],
         ),
         if (_isDropdownOpen)
           Positioned(
-            top: 40,
+            top: 55,
             right: 0,
             child: Container(
+              padding: EdgeInsets.all(15),
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
                 color: Colors.white,
@@ -76,7 +90,6 @@ class _CustomMenuButtonState extends State<_CustomMenuButton> {
               child: Column(
                 children: [
                   _buildMenuItem(
-                    icon: Icons.home,
                     label: "Home",
                     onTap: () {
                       print("Home clicked");
@@ -84,7 +97,6 @@ class _CustomMenuButtonState extends State<_CustomMenuButton> {
                     },
                   ),
                   _buildMenuItem(
-                    icon: Icons.person,
                     label: "Profile",
                     onTap: () {
                       print("Profile clicked");
@@ -92,19 +104,9 @@ class _CustomMenuButtonState extends State<_CustomMenuButton> {
                     },
                   ),
                   _buildMenuItem(
-                    icon: Icons.settings,
                     label: "Settings",
                     onTap: () {
                       print("Settings clicked");
-                      _toggleDropdown();
-                    },
-                  ),
-                  _buildMenuItem(
-                    icon: Icons.logout,
-                    label: "Logout",
-                    iconColor: Colors.red,
-                    onTap: () {
-                      print("Logout clicked");
                       _toggleDropdown();
                     },
                   ),
@@ -117,7 +119,7 @@ class _CustomMenuButtonState extends State<_CustomMenuButton> {
   }
 
   Widget _buildMenuItem({
-    required IconData icon,
+    IconData? icon,
     required String label,
     Color iconColor = Colors.blue,
     required VoidCallback onTap,
@@ -126,15 +128,10 @@ class _CustomMenuButtonState extends State<_CustomMenuButton> {
       onTap: onTap,
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-        decoration: BoxDecoration(
-          border: Border(
-            bottom: BorderSide(color: Colors.grey.shade200),
-          ),
-        ),
         child: Row(
           children: [
-            Icon(icon, color: iconColor),
-            const SizedBox(width: 10),
+            (icon == null) ? SizedBox() : Icon(icon, color: iconColor),
+            (icon == null) ? SizedBox() : SizedBox(width: 10),
             Text(label, style: const TextStyle(fontSize: 16)),
           ],
         ),

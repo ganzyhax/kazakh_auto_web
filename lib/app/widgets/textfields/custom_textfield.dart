@@ -4,12 +4,12 @@ import 'package:kazakhi_auto_web/constants/app_colors.dart'; // Replace with you
 class CustomTextfield extends StatelessWidget {
   final String hintText;
   final IconData? rightIcon;
-
-  const CustomTextfield({
-    super.key,
-    required this.hintText,
-    this.rightIcon,
-  });
+  final TextEditingController controller;
+  const CustomTextfield(
+      {super.key,
+      required this.hintText,
+      this.rightIcon,
+      required this.controller});
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +21,7 @@ class CustomTextfield extends StatelessWidget {
             Border.all(color: Colors.grey.shade300, width: 1), // Border color
       ),
       child: TextField(
+        controller: controller,
         decoration: InputDecoration(
           hintText: hintText,
           hintStyle: const TextStyle(color: Colors.grey), // Hint text color

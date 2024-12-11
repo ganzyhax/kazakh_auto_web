@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:kazakhi_auto_web/app/functions/global_function.dart';
+import 'package:kazakhi_auto_web/app/widgets/buttons/custom_button.dart';
 import 'package:kazakhi_auto_web/constants/app_colors.dart';
 
 class HomeHeaderDesktopCard extends StatelessWidget {
@@ -27,13 +28,13 @@ class HomeHeaderDesktopCard extends StatelessWidget {
             Row(
               children: [
                 Image.asset(
-                  'assets/images/logo_white.jpg', // Replace with your logo
+                  'assets/images/logo_bg.jpg', // Replace with your logo
                   width: (deviceType == DeviceType.desktop) ? 55 : 40,
                   height: (deviceType == DeviceType.desktop) ? 55 : 40,
                 ),
                 const SizedBox(width: 8),
                 Text(
-                  "Kazakh Auto",
+                  "Kazakh Auto Group",
                   style: TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: (deviceType == DeviceType.desktop) ? 22 : 16),
@@ -41,6 +42,7 @@ class HomeHeaderDesktopCard extends StatelessWidget {
               ],
             ),
             Row(
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
                   'Главная',
@@ -53,6 +55,18 @@ class HomeHeaderDesktopCard extends StatelessWidget {
                   width: 40,
                 ),
                 Text('Контакты'),
+                SizedBox(
+                  width: 40,
+                ),
+                SizedBox(
+                    height: 40,
+                    child: CustomButton(text: 'ВОЙТИ', onTap: () {})),
+                SizedBox(
+                  width: 40,
+                ),
+                Row(
+                  children: [Icon(Icons.language), Text('RU')],
+                )
               ],
             )
           ],
